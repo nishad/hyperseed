@@ -145,14 +145,26 @@ class ENVIReader:
         if not content.strip().startswith('ENVI'):
             raise ValueError(f"Invalid ENVI header file: {self.header_path}")
 
+        # Remove ENVI signature line for parsing
+        lines = content.strip().split('\n')
+        if lines[0].strip() == 'ENVI':
+            lines = lines[1:]
+        content_without_envi = '\n'.join(lines)
+
         # Parse key-value pairs
         # Handle multi-line values in braces
-        pattern = r'(\w+(?:\s+\w+)*)\s*=\s*({[^}]*}|[^\n]*)'
-        matches = re.findall(pattern, content, re.MULTILINE | re.DOTALL)
+        # Improved pattern to handle "samples = 200" format correctly
+        pattern = r'(\w+(?:\s+\w+)*)\s*=\s*({[^}]*}|[^\n\r]*)'
+        matches = re.findall(pattern, content_without_envi, re.MULTILINE | re.DOTALL)
 
         for key, value in matches:
+            # Normalize key - handle both single word and multi-word keys
             key = key.strip().lower().replace(' ', '_')
             value = value.strip()
+
+            # Skip empty values
+            if not value:
+                continue
 
             # Handle bracketed lists
             if value.startswith('{') and value.endswith('}'):
