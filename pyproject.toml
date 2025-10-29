@@ -72,8 +72,7 @@ package-dir = {"" = "."}
 packages = ["hyperseed", "hyperseed.cli", "hyperseed.core", "hyperseed.core.io",
             "hyperseed.core.calibration", "hyperseed.core.preprocessing",
             "hyperseed.core.segmentation", "hyperseed.core.extraction",
-            "hyperseed.core.classification", "hyperseed.core.visualization",
-            "hyperseed.config", "hyperseed.utils", "hyperseed.tests"]
+            "hyperseed.config", "hyperseed.tests"]
 
 [tool.setuptools.package-data]
 hyperseed = ["config/*.yaml", "config/*.json"]
