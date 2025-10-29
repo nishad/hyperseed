@@ -174,10 +174,10 @@ hyperseed batch dataset/ \
 #### Filter by Pattern
 ```bash
 # Process only SWIR_L* datasets
-hyperseed batch dataset/ --pattern "SWIR_L*"
+hyperseed batch dataset/ --pattern "SXX_X*"
 
 # Process only specific datasets
-hyperseed batch dataset/ --pattern "SWIR_N0*"
+hyperseed batch dataset/ --pattern "SYYY_YY*"
 ```
 
 #### With Custom Settings
@@ -676,7 +676,3 @@ hyperseed info --help
 - ✅ Confirm seed counts are reasonable
 - ✅ Review mean reflectance values
 - ✅ Check for processing warnings/errors
-
-## Notes
-
-This tool was developed for hyperspectral seed analysis research. For questions or issues, please contact the development team or refer to the source code documentation.
