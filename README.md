@@ -1,5 +1,10 @@
 # Hyperseed 🌱
 
+[![PyPI version](https://badge.fury.io/py/hyperseed.svg)](https://badge.fury.io/py/hyperseed)
+[![Downloads](https://pepy.tech/badge/hyperseed)](https://pepy.tech/project/hyperseed)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Versions](https://img.shields.io/pypi/pyversions/hyperseed.svg)](https://pypi.org/project/hyperseed/)
+
 An experimental Python tool for hyperspectral seed image analysis. Inspired by (Reddy, et.al 2023, Sensors)[https://pmc.ncbi.nlm.nih.gov/articles/PMC9961513/]
 
 ## 🌟 Features
@@ -24,11 +29,23 @@ An experimental Python tool for hyperspectral seed image analysis. Inspired by (
 
 ## 🚀 Installation
 
+### Using pip
+
+```bash
+pip install hyperseed
+```
+
+### Using pip from Github Source
+
+```bash
+pip install --no-cache-dir --force-reinstall https://github.com/nishad/hyperseed/archive/main.zip
+```
+
 ### From Source
 
 ```bash
 # Clone the repository
-git clone [repository-url]
+git clone https://github.com/nishad/hyperseed
 cd hyperseed
 
 # Create virtual environment
@@ -37,12 +54,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install in development mode
 pip install -e ".[dev]"
-```
-
-### Using pip from Github Source
-
-```bash
-pip install --no-cache-dir --force-reinstall https://github.com/nishad/hyperseed/archive/main.zip
 ```
 
 ## 📖 Quick Start
