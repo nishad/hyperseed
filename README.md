@@ -39,12 +39,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
-### Using pip
-
-```bash
-pip install hyperseed
-```
-
 ## 📖 Quick Start
 
 ### Basic Usage
