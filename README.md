@@ -39,6 +39,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
+### Using pip from Source
+
+```bash
+pip install --no-cache-dir --force-reinstall https://github.com/nishad/hyperseed/archive/main.zip
+```
+
 ## 📖 Quick Start
 
 ### Basic Usage
@@ -159,6 +165,10 @@ seed_id,index,centroid_y,centroid_x,area,eccentricity,solidity,band_1000nm,band_
 7. **Extraction**: Extract average spectrum for each valid seed
 8. **Export**: Save results with comprehensive spatial and spectral information
 
+## Command-Line Documentation
+
+For detailed usage instructions, see the [CLI Documentation](CLI_DOCUMENTATION.md).
+
 ## 🛠️ Development
 
 ### Running Tests
@@ -185,13 +195,6 @@ ruff check hyperseed/
 
 # Type checking
 mypy hyperseed/
-```
-
-### Building Documentation
-
-```bash
-cd docs
-make html
 ```
 
 ## 📚 API Usage
