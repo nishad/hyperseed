@@ -39,7 +39,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
-### Using pip from Source
+### Using pip from Github Source
 
 ```bash
 pip install --no-cache-dir --force-reinstall https://github.com/nishad/hyperseed/archive/main.zip
