@@ -95,9 +95,14 @@ def generate_synthetic_hypercube(
     # Generate seeds
     seed_id = 1
     for _ in range(n_seeds):
-        # Random position
-        center_y = np.random.randint(50, lines - 50)
-        center_x = np.random.randint(50, samples - 50)
+        # Random position - ensure we have valid range
+        y_margin = min(50, lines // 4)
+        x_margin = min(50, samples // 4)
+        if lines <= 2 * y_margin or samples <= 2 * x_margin:
+            # Skip seed generation for very small images
+            break
+        center_y = np.random.randint(y_margin, lines - y_margin)
+        center_x = np.random.randint(x_margin, samples - x_margin)
 
         # Random size
         size = np.random.randint(seed_size_range[0], seed_size_range[1])
