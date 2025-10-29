@@ -1,0 +1,259 @@
+# Hyperseed Project .gitignore
+
+# CRITICAL: Never commit research data
+dataset/
+datasets/
+data/
+raw_data/
+sample_data/
+research_data/
+unpublished_data/
+*.raw
+*.hdr
+*.bpr
+*.dat
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Documentation
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+.claude
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Output files (but not example outputs)
+results/
+outputs/
+*.csv
+!examples/*.csv
+!tests/fixtures/*.csv
+*.pdf
+!docs/*.pdf
+*.png
+!docs/images/*.png
+!examples/*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+
+# Log files
+*.log
+logs/
+*.out
+*.err
+
+# Config files with sensitive info
+config.local.yaml
+config.private.yaml
+secrets.yaml
+credentials.json
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# Model files (large binary files)
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.pth
+*.pt
+models/
+!tests/fixtures/*.pkl
+
+# Profiling
+*.prof
+*.lprof
+profile_output/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Rope
+.ropeproject/
+
+# mkdocs documentation
+/site
+
+# Sphinx documentation
+docs/_build/
+docs/build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Local development
+local/
+scratch/
+sandbox/
+experiments/
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node (if using for any front-end components)
+node_modules/
+package-lock.json
+yarn.lock
+
+# R (if using for any statistical analysis)
+.Rhistory
+.RData
+.Rproj.user/
+
+# MATLAB (if comparing with MATLAB implementations)
+*.m~
+*.mat
+
+# Custom ignore patterns
+ignore/
+do_not_commit/
+private/
