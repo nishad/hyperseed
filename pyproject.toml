@@ -4,8 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hyperseed"
-version = "0.1.0"
+version = "0.1.0a3"
 description = "An experimental tool for hyperspectral seed image analysis"
+keywords = ["hyperspectral", "image-analysis", "seed-analysis", "spectroscopy", "remote-sensing", "machine-learning", "computer-vision"]
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -72,10 +73,10 @@ package-dir = {"" = "."}
 packages = ["hyperseed", "hyperseed.cli", "hyperseed.core", "hyperseed.core.io",
             "hyperseed.core.calibration", "hyperseed.core.preprocessing",
             "hyperseed.core.segmentation", "hyperseed.core.extraction",
-            "hyperseed.config", "hyperseed.tests"]
+            "hyperseed.config", "hyperseed.tests", "hyperseed.tests.fixtures"]
 
-[tool.setuptools.package-data]
-hyperseed = ["config/*.yaml", "config/*.json"]
+# [tool.setuptools.package-data]
+# hyperseed = ["config/*.yaml", "config/*.json"]  # No config files currently
 
 [tool.black]
 line-length = 88
