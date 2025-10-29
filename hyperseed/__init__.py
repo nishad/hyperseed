@@ -4,7 +4,7 @@ A comprehensive Python package for analyzing hyperspectral imagery of plant seed
 designed for scientific research with emphasis on accuracy and reproducibility.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.0a3"
 __author__ = "Hyperseed Development Team"
 
 # Package-level imports for convenience
