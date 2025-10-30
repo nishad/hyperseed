@@ -437,12 +437,6 @@ def segment(
     help='Configuration file path (YAML).'
 )
 @click.option(
-    '--parallel',
-    type=int,
-    default=1,
-    help='Number of parallel workers.'
-)
-@click.option(
     '--pattern',
     default='*',
     help='Pattern to match dataset directories.'
@@ -464,7 +458,6 @@ def batch(
     input_dir: Path,
     output_dir: Optional[Path],
     config: Optional[Path],
-    parallel: int,
     pattern: str,
     min_pixels: int,
     no_outlier_removal: bool
@@ -474,7 +467,7 @@ def batch(
     Processes all datasets in a directory matching the specified pattern.
 
     Example:
-        hyperseed batch datasets/ --output-dir results/ --parallel 4
+        hyperseed batch datasets/ --output-dir results/
     """
     console.print(f"[bold green]Batch Processing[/bold green]")
     console.print(f"Input directory: {input_dir}")
