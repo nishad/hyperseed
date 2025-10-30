@@ -17,7 +17,7 @@ An experimental Python tool for hyperspectral seed image analysis. Inspired by (
 - **Spectral Extraction**: Extract average spectral signatures from individual seeds
 - **Spatial Preservation**: Maintain seed coordinates and morphological properties
 - **Comprehensive Visualizations**: Auto-generate distribution, segmentation, and spectral plots
-- **Batch Processing**: Process multiple datasets efficiently with parallel support
+- **Batch Processing**: Process multiple datasets efficiently
 - **Flexible Configuration**: YAML-based configuration system
 - **User-Friendly CLI**: Intuitive command-line interface with rich output
 
@@ -25,7 +25,6 @@ An experimental Python tool for hyperspectral seed image analysis. Inspired by (
 
 - Python 3.10 or higher
 - 8GB+ RAM recommended
-- Optional: GPU with Metal (macOS) or CUDA support for acceleration
 
 ## 🚀 Installation
 
@@ -80,11 +79,10 @@ hyperseed analyze dataset/sample_data \
 ### Advanced Usage
 
 ```bash
-# Batch process multiple datasets in parallel
+# Batch process multiple datasets
 hyperseed batch dataset/ \
     --output-dir results/ \
-    --min-pixels 50 \
-    --parallel 4
+    --min-pixels 50
 
 # Disable outlier removal if needed
 hyperseed analyze dataset/sample \
@@ -123,7 +121,6 @@ Create a configuration file to customize the analysis pipeline:
 ```yaml
 # config.yaml
 calibration:
-  apply_calibration: true
   clip_negative: true
   clip_max: 1.0
 
@@ -141,11 +138,6 @@ segmentation:
   remove_outliers: true  # Automatic outlier removal (enabled by default)
   outlier_min_area: 50
   outlier_max_area: 2000
-
-output:
-  format: csv
-  include_plots: true
-  include_coordinates: true
 ```
 
 ## 📊 Output Format
@@ -163,7 +155,6 @@ seed_id,index,centroid_y,centroid_x,area,eccentricity,solidity,band_1000nm,band_
 - `*_distribution.png`: Spatial and area distribution of seeds
 - `*_segmentation.png`: Numbered seed visualization with boundaries
 - `*_spectra.png`: Individual and mean spectral curves
-- `*_spectra_statistics.png`: Statistical analysis of spectral variability
 
 ## 🔬 Processing Pipeline
 
@@ -242,3 +233,7 @@ results = extractor.extract(calibrated, mask, wavelengths)
 # Save results
 extractor.save_csv("results.csv")
 ```
+
+## 🙏 Credits
+
+Logo icon ["Sprouting Seed"](https://thenounproject.com/icon/sprouting-seed-5803652/) by [4urbrand](https://thenounproject.com/4urbrand/) from [The Noun Project](https://thenounproject.com/), used under [Creative Commons license](https://creativecommons.org/licenses/by/3.0/).
