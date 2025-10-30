@@ -129,12 +129,11 @@ For input `dataset/sample` with output `results.csv` and `--export-plots`:
 2. **results_distribution.png** - Spatial and size distribution
 3. **results_segmentation.png** - Numbered seed visualization
 4. **results_spectra.png** - Individual and mean spectra
-5. **results_spectra_statistics.png** - Statistical analysis
-6. **results_mask.npy** - Segmentation mask (if --export-mask)
+5. **results_mask.npy** - Segmentation mask (if --export-mask)
 
 ## Batch Command
 
-Process multiple datasets in parallel.
+Process multiple datasets sequentially.
 
 ### Basic Syntax
 ```bash
@@ -147,7 +146,6 @@ hyperseed batch INPUT_DIR [OPTIONS]
 |--------|------|---------|-------------|
 | `-o, --output-dir` | PATH | input_dir/results | Output directory |
 | `-c, --config` | PATH | None | Configuration file (YAML) |
-| `--parallel` | INT | 1 | Number of parallel workers |
 | `--pattern` | TEXT | * | Pattern to match datasets |
 | `--min-pixels` | INT | 200 | Minimum seed size |
 | `--no-outlier-removal` | FLAG | False | Disable outlier removal |
@@ -162,13 +160,6 @@ hyperseed batch dataset/
 #### Custom Output Directory
 ```bash
 hyperseed batch dataset/ --output-dir analysis_results/
-```
-
-#### Parallel Processing
-```bash
-hyperseed batch dataset/ \
-    --output-dir results/ \
-    --parallel 4
 ```
 
 #### Filter by Pattern
@@ -195,9 +186,10 @@ results/
 ├── sample_001_distribution.png
 ├── sample_001_segmentation.png
 ├── sample_001_spectra.png
-├── sample_001_spectra_statistics.png
 ├── sample_002_spectra.csv
 ├── sample_002_distribution.png
+├── sample_002_segmentation.png
+├── sample_002_spectra.png
 └── ...
 ```
 
@@ -287,8 +279,6 @@ hyperseed config --output chemometric_config.yaml --preset advanced
 
 ```yaml
 calibration:
-  apply_calibration: true
-  apply_bad_pixels: true
   clip_negative: true
   clip_max: 1.0
 
@@ -322,28 +312,6 @@ segmentation:
   outlier_eccentricity: 0.95
   outlier_solidity: 0.7
   use_shape_filtering: false
-
-wavelength_selection:
-  method: all
-  ranges: null
-  bands: null
-  n_components: 20
-
-output:
-  format: csv
-  include_plots: true
-  include_coordinates: true
-  include_metadata: true
-  plot_format: png
-  plot_dpi: 150
-  csv_separator: ','
-
-processing:
-  device: auto
-  parallel_workers: 4
-  chunk_size: null
-  memory_limit_gb: null
-  use_mmap: true
 ```
 
 ### Editing Configuration
@@ -377,7 +345,7 @@ Hyperseed Information
 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
 ┃ Component       ┃ Version/Info ┃
 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
-│ Hyperseed       │        0.1.0 │
+│ Hyperseed       │      0.1.0a3 │
 │ Python version  │       3.10.0 │
 │ NumPy          │      1.24.3  │
 │ SciPy          │      1.11.4  │
@@ -385,6 +353,10 @@ Hyperseed Information
 │ Spectral       │       0.23.1 │
 └─────────────────┴──────────────┘
 ```
+
+**Note:** The `hyperseed info` command currently displays placeholder URLs for GitHub and documentation. The actual project URLs are:
+- GitHub: https://github.com/nishad/hyperseed
+- Documentation: https://nishad.github.io/hyperseed
 
 ## Preprocessing Options
 
@@ -485,10 +457,6 @@ results.h5
    - Mean spectrum (bold)
    - Standard deviation shading
 
-4. **Statistics Plot** (`*_spectra_statistics.png`)
-   - Top: All spectra overlaid
-   - Bottom: Percentile ranges
-
 ## Advanced Usage
 
 ### Pipeline Integration
@@ -502,16 +470,6 @@ hyperseed batch dataset/ --config pipeline.yaml --output-dir results/
 
 # Step 3: Post-process results
 python post_process.py results/
-```
-
-### Parallel Batch Processing
-
-```bash
-# Use all available cores
-hyperseed batch dataset/ --parallel $(nproc)
-
-# Limit to 4 cores
-hyperseed batch dataset/ --parallel 4
 ```
 
 ### Custom Outlier Settings
@@ -574,10 +532,7 @@ hyperseed analyze dataset/sample --preprocess minimal
 
 #### 4. Memory Issues with Large Datasets
 ```bash
-# Process sequentially
-hyperseed batch dataset/ --parallel 1
-
-# Or process individually
+# Process individually to manage memory
 for dir in dataset/*/; do
     name=$(basename "$dir")
     hyperseed analyze "$dir" -o "results/${name}.csv"
@@ -603,7 +558,7 @@ done
 
 4. **For Batch Processing**:
    ```bash
-   hyperseed batch dataset/ --parallel 4 --min-pixels 50
+   hyperseed batch dataset/ --min-pixels 50
    ```
 
 ## Exit Codes
@@ -611,10 +566,7 @@ done
 | Code | Meaning |
 |------|---------|
 | 0 | Success |
-| 1 | General error |
-| 2 | Invalid arguments |
-| 3 | File not found |
-| 4 | Processing error |
+| 1 | Error (all error types) |
 
 ## Getting Help
 
@@ -664,8 +616,7 @@ hyperseed info --help
    ```bash
    hyperseed batch dataset/ \
        --config optimized.yaml \
-       --output-dir final_results/ \
-       --parallel 4
+       --output-dir final_results/
    ```
 
 ### Quality Control Checklist
