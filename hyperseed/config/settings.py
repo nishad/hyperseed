@@ -216,6 +216,11 @@ class Settings(BaseModel):
     def save(self, path: Path) -> None:
         """Save settings to YAML file.
 
+        Only saves functional configuration sections:
+        - calibration (clip_negative, clip_max only)
+        - preprocessing (all parameters)
+        - segmentation (all parameters)
+
         Args:
             path: Path to save configuration file.
         """
@@ -223,9 +228,19 @@ class Settings(BaseModel):
 
         path.parent.mkdir(parents=True, exist_ok=True)
 
+        # Only export functional sections
+        config_dict = {
+            'calibration': {
+                'clip_negative': self.calibration.clip_negative,
+                'clip_max': self.calibration.clip_max,
+            },
+            'preprocessing': self.preprocessing.model_dump(exclude_none=True),
+            'segmentation': self.segmentation.model_dump(exclude_none=True),
+        }
+
         with open(path, 'w') as f:
             yaml.dump(
-                self.model_dump(exclude_none=True),
+                config_dict,
                 f,
                 default_flow_style=False,
                 sort_keys=False
